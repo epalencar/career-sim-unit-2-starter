@@ -6,6 +6,7 @@ const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 const modal = document.querySelector(".modal");
 const modalContent = document.querySelector(".modal-content");
 const closeModal = document.querySelector("#close-modal");
+const mainContainer = document.querySelector("main");
 
 modal.addEventListener("click", function(e){
   // closes modal when you click outside the content area of the modal
@@ -29,7 +30,6 @@ const fetchAllPlayers = async () => {
     modalContent var */
     const res = await fetch (`${API_URL}/players`);
     const json = await res.json();
-    console.log(json.data.players);
     return json.data.players;
   }catch(err){
      console.error("Uh oh, trouble fetching players!", err);
@@ -97,6 +97,30 @@ const removePlayer = async (playerId) => {
  * @param {Object[]} playerList - an array of player objects
  */
 const renderAllPlayers = (playerList) => {
+  console.log(playerList);
+  const playerCardsHTML = playerList.map((player) => {
+  const playerCard = document.createElement("div");
+  playerCard.classList.add("player-card");
+  const playerImg = document.createElement("img");
+  playerImg.src = player.imageUrl;
+  playerImg.alt = player.name;
+  console.log(playerImg);
+  const playerName = document.createElement("h3");
+  const detailsButton = document.createElement("button");
+  detailsButton.addEventListener("click", function() {
+    modal.classList.add("modal-open");
+    modalContent.classList.add("modal-content-open");
+  })
+  detailsButton.innerText = "See Details";
+  playerName.innerText = player.name;
+  playerCard.replaceChildren(playerImg, playerName, detailsButton);
+  
+  return playerCard;
+});  
+
+mainContainer.replaceChildren(...playerCardsHTML)
+
+console.log(playerCardsHTML);
  // TODO
 
  // when you add a event handler to the buttons, you need to pass an id of the player
@@ -151,7 +175,6 @@ const renderNewPlayerForm = () => {
 const init = async () => {
   const players = await fetchAllPlayers();
   renderAllPlayers(players);
-
   renderNewPlayerForm();
 };
 
