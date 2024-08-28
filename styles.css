@@ -53,3 +53,18 @@ main{
 .modal-content-open{
   transform: scale(1);
 }
+
+.player-card{
+  width: 27%;
+  border: 3px solid;
+  text-align: center;
+}
+
+.player-card button {
+  width: 100%;
+  padding: 10px;
+}
+
+.player-card img {
+  max-width: 100%;
+}
