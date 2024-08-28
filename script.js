@@ -1,6 +1,6 @@
 // Use the API_URL variable to make fetch requests to the API.
 // Replace the placeholder with your cohort name (ex: 2109-UNF-HY-WEB-PT)
-const cohortName = "2404-FTB-ET-WEB-AM";
+const cohortName = "2406-CRA-ET-WEB-AM";
 const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 
 const modal = document.querySelector(".modal");
@@ -9,7 +9,6 @@ const closeModal = document.querySelector("#close-modal");
 
 modal.addEventListener("click", function(e){
   // closes modal when you click outside the content area of the modal
-  console.log(e.target.classList)
   if(!e.target.classList.contains("modal-content") ){
 
     modalContent.classList.remove("modal-content-open");
@@ -28,6 +27,10 @@ const fetchAllPlayers = async () => {
     /* Remember, if you're using the modal, when you create the details button,
     in th event handler, create functionality that adds the class 'modal-open' to the modal var and 'modal-content-open' to the
     modalContent var */
+    const res = await fetch (`${API_URL}/players`);
+    const json = await res.json();
+    console.log(json.data.players);
+    return json.data.players;
   }catch(err){
      console.error("Uh oh, trouble fetching players!", err);
   }
