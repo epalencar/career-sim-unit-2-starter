@@ -7,6 +7,7 @@ const modal = document.querySelector(".modal");
 const modalContent = document.querySelector(".modal-content");
 const closeModal = document.querySelector("#close-modal");
 const mainContainer = document.querySelector("main");
+const addPlayerForm = document.querySelector("#new-player-form");
 
 modal.addEventListener("click", function(e){
   // closes modal when you click outside the content area of the modal
@@ -24,7 +25,6 @@ modal.addEventListener("click", function(e){
  */
 const fetchAllPlayers = async () => {
   try {
-    // TODO
     /* Remember, if you're using the modal, when you create the details button,
     in th event handler, create functionality that adds the class 'modal-open' to the modal var and 'modal-content-open' to the
     modalContent var */
@@ -43,6 +43,10 @@ const fetchAllPlayers = async () => {
  */
 const fetchSinglePlayer = async (playerId) => {
   try {
+    const res = await fetch (`${API_URL}/players/${playerId}`);
+    const json = await res.json();
+    console.log(json.data.player);
+    return json.data.player;
     // TODO
   } catch (err) {
     console.error(`Oh no, trouble fetching player #${playerId}!`, err);
@@ -107,10 +111,12 @@ const renderAllPlayers = (playerList) => {
   console.log(playerImg);
   const playerName = document.createElement("h3");
   const detailsButton = document.createElement("button");
-  detailsButton.addEventListener("click", function() {
+  detailsButton.addEventListener("click", async function() {
+    const playerData = await fetchSinglePlayer(player.id);
+    renderSinglePlayer(playerData);
     modal.classList.add("modal-open");
     modalContent.classList.add("modal-content-open");
-  })
+  });
   detailsButton.innerText = "See Details";
   playerName.innerText = player.name;
   playerCard.replaceChildren(playerImg, playerName, detailsButton);
@@ -150,7 +156,26 @@ console.log(playerCardsHTML);
  * @param {Object} player an object representing a single player
  */
 const renderSinglePlayer = (player) => {
-  // TODO
+  //delete player.team.name; //to test unassigned Team Name
+  const playerName = document.createElement("h3");
+  playerName.innerText = player.name;
+  const playerImg = document.createElement("img");
+  playerImg.src = player.imageUrl;
+  playerImg.alt = player.name;
+  playerImg.width = 150;
+  const playerId = document.createElement("p");
+  playerId.innerText = `Player ID: ${player.id}`;
+  const playerBreed = document.createElement("p");
+  playerBreed.innerText = player.breed;
+  const teamName = document.createElement("p");
+  teamName.innerText = `Team: ${player.team.name ? player.team.name : "Unassigned"}`;
+  modalContent.replaceChildren(
+    playerName, 
+    playerBreed, 
+    playerImg, 
+    playerId, 
+    teamName
+  );
 };
 
 /**
@@ -160,7 +185,33 @@ const renderSinglePlayer = (player) => {
  */
 const renderNewPlayerForm = () => {
   try {
-    // TODO
+    //UI for the name label and input
+    const nameLabel = document.createElement("label");
+    nameLabel.innerText = "Player Name";
+    nameLabel.setAttribute = ("for", "name-input");
+    const nameInput = document.createElement("input");
+    nameInput.type ="text";
+    nameInput.id = "name-input";
+    const breedLabel = document.createElement("label");
+    breedLabel.innerText = "Player Breed";
+    breedLabel.setAttribute("for", "breed-input");
+    const breedInput = document.createElement("input");
+    breedInput.type = "text";
+    breedInput.id = "breed-input";
+    const imgLabel = document.createElement("label");
+    imgLabel.innerText = "Image URL";
+    imgLabel.setAttribute("for", "image-url-input");
+    const imgInput = document.createElement("input");
+    imgInput.type = "text";
+    imgInput.id = "img-url-input";
+
+    addPlayerForm.replaceChildren(
+      nameLabel, 
+      nameInput, 
+      breedLabel, 
+      breedInput, 
+      imgLabel, 
+      imgInput);
   } catch (err) {
     console.error("Uh oh, trouble rendering the new player form!", err);
   }
