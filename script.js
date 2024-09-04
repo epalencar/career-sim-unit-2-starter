@@ -169,17 +169,17 @@ console.log(playerCardsHTML);
  */
 const renderSinglePlayer = (player) => {
   //delete player.team.name; //to test unassigned Team Name
-  const playerName = document.createElement("h3");
+  const playerName = document.createElement("h1");
   playerName.innerText = player.name;
   const playerImg = document.createElement("img");
   playerImg.src = player.imageUrl;
   playerImg.alt = player.name;
-  playerImg.width = 150;
-  const playerId = document.createElement("p");
+  // playerImg.width = 200;
+  const playerId = document.createElement("h3");
   playerId.innerText = `Player ID: ${player.id}`;
-  const playerBreed = document.createElement("p");
+  const playerBreed = document.createElement("h2");
   playerBreed.innerText = player.breed;
-  const teamName = document.createElement("p");
+  const teamName = document.createElement("h4");
   teamName.innerText = `Team: ${player.team?.name ? player.team.name : "Unassigned"}`;
   const removeButton = document.createElement("button");
   removeButton.innerText = "Remove from Roster";
