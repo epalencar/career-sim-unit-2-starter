@@ -68,3 +68,20 @@ main{
 .player-card img {
   max-width: 100%;
 }
+
+@media(max-width:720px){
+  /*your styles here*/
+  main{justify-content: center;
+  }
+  .player-card{
+    width:95%
+  }
+  .player-card h3{
+    font-size: 24px;
+    padding: 15px 0;
+  }
+  .player-card button{
+    font-size: 32px;
+    padding: 15px 0;
+  }
+}
