@@ -1,23 +1,36 @@
 *{
-  padding: 0;
-  margin: 0;
+  padding: 10px;
+  margin: 5px;
   box-sizing: border-box;
 }
 
-body{
+form label {
+  font-size: 32px;
+}
+
+form input {
+  font-size: 32px;
+}
+
+form button {
+  font-size: 32px;
+}
+
+form select {
+  font-size: 32px;
+}
+
+body {
   position: relative;
 }
 
-main{
+main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-
-
-
-.modal{
+.modal {
   position: fixed;
   height: 100vh;
   width: 100%;
@@ -32,12 +45,12 @@ main{
   z-index: -1;
 }
 
-.modal-open{
+.modal-open {
   opacity:1;
   z-index:100;
 }
 
-.modal-content{
+.modal-content {
   width: 75%;
   height:80vh;
   background-color: white;
@@ -50,38 +63,98 @@ main{
   justify-content: center;
 }
 
-.modal-content-open{
+.modal-content-open {
   transform: scale(1);
+  width: 50%;
+  height: 80%;
 }
 
-.player-card{
-  width: 27%;
+.player-card {
+  width: 30%;
   border: 3px solid;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .player-card button {
-  width: 100%;
+  width: 50%;
   padding: 10px;
+  border-radius: 15px;
+  font-size: 32px;
+  padding: 15px 0;
 }
 
 .player-card img {
-  max-width: 100%;
+  max-width: 75%;
 }
 
-@media(max-width:720px){
+.player-card h3 {
+  font-size: 45px;
+  padding: 15px 0;
+}
+
+.modal-content-open h1 {
+  font-size: 75px;
+}
+
+.modal-content-open h2 {
+  font-size: 55px;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.modal-content-open h3 {
+  font-size: 45px;
+}
+
+.modal-content-open h4 {
+  font-size: 35px;
+}
+
+.modal-content-open p {
+  font-size: 40px;
+}
+
+.modal-content-open button {
+  border-radius: 15px;
+  font-size: 24px;
+}
+
+.modal-content-open img {
+  width: 450px;
+}
+
+@media(max-width:1020px) {
   /*your styles here*/
-  main{justify-content: center;
+  main {
+    padding: 0 1%;
   }
-  .player-card{
-    width:95%
+  .player-card {
+    width:48%;
   }
-  .player-card h3{
+  .player-card h3 {
+    font-size: 32px;
+    padding: 15px 0;
+  }
+  .player-card button {
     font-size: 24px;
     padding: 15px 0;
   }
-  .player-card button{
+}
+
+@media(max-width:720px) {
+  /*your styles here*/
+  main{justify-content: center;
+  }
+  .player-card {
+    width:95%
+  }
+  .player-card h3 {
     font-size: 32px;
+    padding: 15px 0;
+  }
+  .player-card button {
+    font-size: 24px;
     padding: 15px 0;
   }
 }
