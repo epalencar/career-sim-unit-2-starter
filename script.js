@@ -213,7 +213,7 @@ const handleAddPlayerSubmit = async (e) => {
   const imageUrl = document.querySelector("#image-url-input").value
     ? document.querySelector("#image-url-input").value
     : "https://r.ddmcdn.com/w_1010/s_f/o_1/cx_0/cy_4/cw_1010/ch_1515/APL/uploads/2019/12/Bert-PBXVI.jpg";  
-const newPlayerData = { name, breed, status, imageUrl };
+    const newPlayerData = { name, breed, status, imageUrl };
   console.log(newPlayerData);
   const result = await addNewPlayer(newPlayerData);
   if (result.success){
@@ -262,6 +262,7 @@ const renderNewPlayerForm = () => {
       {innerText: "field", value: "field"},
     ];
     const statusMenu = createSelectWithOptions(options,"bench");
+
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
 
@@ -301,6 +302,7 @@ const createSelectWithOptions = (options,defaultValue) => {
   select.replaceChildren(...optionsHTML);
   return select;
 };
+
 
 /** 
  * Helper function to create TEXT inputs
